@@ -1,0 +1,31 @@
+/*
+$palegold: #C0B283;
+$silk: #DCD0C0;
+$paper: #F4F4F4;
+$charcoal: #343434;
+*/
+
+ul.mynavbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #F4F4F4;
+}
+
+li.mynavitem {
+    float: left;
+}
+
+li.mynavitem a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li.mynavitem a:hover {
+    background-color: #DCD0C0;
+}
