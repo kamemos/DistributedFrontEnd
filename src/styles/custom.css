@@ -25,7 +25,6 @@ li.mynavitem a:hover {
     background-color: #DCD0C0;
 }
 
-<<<<<<< HEAD
 .box {
     width:'800px';
     padding:'20px';
@@ -192,17 +191,3 @@ form.myform {
     flex-wrap: wrap;
 }
 
-=======
-.bg {
-    /* The image used */
-    background-image: url("../imgs/spartabg.jpg");
-
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
->>>>>>> origin/master
