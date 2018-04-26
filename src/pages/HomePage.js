@@ -1,6 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+<<<<<<< HEAD
 import {Grid,Row,Button} from 'react-bootstrap';
+=======
+import {Grid,Row,Col,Button} from 'react-bootstrap';
+>>>>>>> origin/master
 
 class HomePage extends React.Component{
     constructor(props){
@@ -39,7 +43,11 @@ class HomePage extends React.Component{
             </Grid>
         )
 
+<<<<<<< HEAD
         if (this.state.progress === 0){
+=======
+        if (this.state.progress == 0){
+>>>>>>> origin/master
             return (
                 <div>
                     <div style={{height:'200px'}}/>

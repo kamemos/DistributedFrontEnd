@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.18.0",
+=======
+>>>>>>> origin/master
     "font-awesome": "^4.7.0",
     "react": "^16.3.1",
     "react-bootstrap": "^0.32.1",
