@@ -1,9 +1,4 @@
-/*
-$palegold: #C0B283;
-$silk: #DCD0C0;
-$paper: #F4F4F4;
-$charcoal: #343434;
-*/
+
 
 ul.mynavbar {
     list-style-type: none;
@@ -29,3 +24,170 @@ li.mynavitem a {
 li.mynavitem a:hover {
     background-color: #DCD0C0;
 }
+
+.box {
+    width:'800px';
+    padding:'20px';
+    background:'#f2f2f2';
+    border-radius:'10px';
+    border-width:'0.5px';
+    text-align:'center';
+}
+
+div.groupbox {
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 5%;
+    height: 90%;
+    width: 325px;
+    background-color: hsl(0, 0%, 95%,60%);
+    border-width: 0.5px;
+    border-radius: 5px;
+}
+
+button.logout {
+    position: relative;
+    color: white;
+    background-color: #d9534f;
+    height: 30px;
+    border-radius: 5px;
+    width: 60%;
+    border-width: 0px;
+    opacity: 1;
+}
+
+button.create {
+    position: relative;
+    color: white;
+    background-color: rgb(0, 110, 255);
+    height: 30px;
+    border-radius: 5px;
+    width: 60%;
+    border-width: 0px;
+    opacity: 1;
+    margin-bottom: 5px;
+}
+
+button.create:hover{
+    background-color: rgb(0, 140, 255);
+}
+
+button.logout:hover{
+    background-color: #d96b4f;
+}
+
+div.userpanel {
+    position: relative;
+    border-radius: 3px;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    min-height: 50px;
+    padding: 8px;
+    text-align: center;
+    background-color: #ecebeb;
+    margin-top: 8px;
+}
+
+div.grouppanel {
+    position: relative;
+    border-radius: 3px;
+    top: 10px;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    height: 70%;
+    padding: 5px;
+    background-color: #ecebeb;
+    overflow-y: scroll;
+}
+
+#iconstatus {
+    height: 30px;
+    width: auto;
+}
+
+#mytd {
+    margin: 10 10 10 10;
+}
+
+form.myform {
+    margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex-container2{
+    position: absolute;
+    top: 5%;
+    left: calc(10% + 300px);
+    bottom: 5%;
+    height: 90%;
+    right: 10%;
+    width: calc(80% - 300px);
+    background-color: hsl(0, 0%, 95%,60%);
+    border-width: 0.5px;
+    border-radius: 5px;
+    padding:30px;
+}
+
+.msgbox{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.usermsg{
+    width: 40%;
+    min-height: 100px;
+    margin: 2% 2% 2% 2%;
+}
+
+.usermsg-content{
+    background-color: rgb(241, 199, 121);
+    min-height: 80px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.time{
+    position: relative;
+    float: right;
+}
+
+.msgbox > .usermsg{
+    margin-left: auto;
+}
+
+.msgbox > .guestmsg{
+    margin-right: auto;
+}
+
+
+.guestmsg{
+    width: 40%;
+    min-height: 100px;
+    margin: 2% 2% 2% 2%;
+}
+
+.guestmsg-content{
+    background-color: wheat;
+    min-height: 80px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.groupmember{
+    display: flex;  
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
