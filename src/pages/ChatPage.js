@@ -21,7 +21,8 @@ class ChatPage extends React.Component{
             message: '',
             messages: [],
             lastSeenMessage: '',
-            userInRoom: []
+            userInRoom: [],
+            endPath:''
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.handleAddMember = this.handleAddMember.bind(this);
@@ -30,7 +31,7 @@ class ChatPage extends React.Component{
         this.handleChatRoom = this.handleChatRoom.bind(this);
         this.handleSendMsg = this.handleSendMsg.bind(this);
         this.handleBreak = this.handleBreak.bind(this);
-        this.socket = io('http://localhost:1111');
+        this.socket = io(this.state.endPath);
     }
 
     handleLogout(){
@@ -63,7 +64,7 @@ class ChatPage extends React.Component{
             this.setState({messages:res.data.messages,lastSeenMessage:res.data.lastSeenMessage});
         });
         let obj = {}
-        if (this.state.messages.length != 0){
+        if (this.state.messages.length !== 0){
             obj.username = this.state.username
             obj.room = this.state.currentroom
             obj.messageID = this.state.messages[this.state.messages.length-1]._id
@@ -115,7 +116,7 @@ class ChatPage extends React.Component{
                 console.log('userdata',data);
                 this.setState({username:data.user.username,
                                name:data.user.name,
-                             })
+                               endPath:data.host})
             });
         });
         axios.get('/getallrooms').then((res)=>{
@@ -175,7 +176,7 @@ class ChatPage extends React.Component{
                             </thead>
                             <tbody>
                                 {this.state.chatrooms.map((room,index)=>{
-                                    if (room.token == this.state.currentroom){
+                                    if (room.token === this.state.currentroom){
                                         return (
                                         <tr style={{backgroundColor:'wheat'}} key={index}>
                                             <td style={{width:'100px',wordBreak:'break-all'}}>{room.token}</td>
