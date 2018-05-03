@@ -17,12 +17,15 @@ class ChatPage extends React.Component{
             join_user:'',
             join_user_msg:'',
             showmodal: false,
+            showmodal2: false,
+            joinGroupID: '',
             currentroom: '',
             message: '',
             messages: [],
             lastSeenMessage: '',
             userInRoom: [],
-            endPath:''
+            endPath:'',
+            err2:''
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.handleAddMember = this.handleAddMember.bind(this);
@@ -31,6 +34,7 @@ class ChatPage extends React.Component{
         this.handleChatRoom = this.handleChatRoom.bind(this);
         this.handleSendMsg = this.handleSendMsg.bind(this);
         this.handleBreak = this.handleBreak.bind(this);
+        this.handleJoinGroup = this.handleJoinGroup.bind(this);
         this.socket = io(this.state.endPath);
     }
 
@@ -95,6 +99,7 @@ class ChatPage extends React.Component{
             console.log(res.data);
         });
         this.setState({showmodal:false});
+        window.location.reload();
     }
 
     handleUnsubscribed(token){
@@ -110,6 +115,14 @@ class ChatPage extends React.Component{
         this.socket.emit('leave',obj);
     }
 
+    handleJoinGroup(){
+        let obj = {}
+        obj.roomToken = this.state.joinGroupID
+        console.log('handle',this.state.joinGroupID);
+        this.setState({showmodal2:false})
+        this.socket.emit('join',obj);
+    }
+
     componentDidMount(){
         fetch('/user',{method:'GET',credentials:'same-origin'}).then((res)=>{
             res.json().then((data)=>{
@@ -123,7 +136,7 @@ class ChatPage extends React.Component{
             this.setState({chatrooms:res.data.chatrooms});
         });
         this.socket.on('left', (data)=>{console.log('leave',data)});
-        this.socket.on('err', (data)=>{console.log('err',data)});
+        this.socket.on('err', (data)=>{console.log(data);this.setState({err2:data.msg})});
         this.socket.on('new message',(data)=>{
             console.log(data);
             if(this.state.currentroom && this.state.currentroom === data.room){
@@ -147,7 +160,6 @@ class ChatPage extends React.Component{
             <div>
                 <div className="groupbox">
                     <div className="userpanel">
-                        <div style={{height:'10px'}}/>
                         <table style={{margin:'auto',width:'70%'}}> 
                             <tbody>
                                 <tr style={{height:'40px'}}>
@@ -160,11 +172,12 @@ class ChatPage extends React.Component{
                                 </tr>
                             </tbody>
                         </table>
-                        <div style={{height:'10px'}}/>
                         <ButtonGroup >
-                            <Button bsStyle="success" onClick={()=>{this.setState({showmodal:true})}}><i className="fas fa-plus"> Create Group</i></Button>
-                            <Button bsStyle="danger" onClick={this.handleLogout}><i className="fas fa-sign-out-alt"> Leave Battle</i></Button>
+                            <Button bsStyle="success" onClick={()=>{this.setState({showmodal:true})}}><i className="fas fa-plus"/> Create Group</Button>
+                            <Button bsStyle="warning" onClick={()=>{this.setState({showmodal2:true})}}><i className="fas fa-sign-in-alt"></i> Join Group</Button>
                         </ButtonGroup>
+                        <div style={{height:'5px'}}/>
+                        <Button bsStyle="danger" onClick={this.handleLogout}><i className="far fa-times-circle"/> Leave Battle</Button>
                     </div>
                     <div className="grouppanel">
                         <Table striped hover >
@@ -288,6 +301,31 @@ class ChatPage extends React.Component{
                     <Modal.Footer>
                         <Button onClick={()=>{this.setState({showmodal:false,join_users:[]})}}>Close</Button>
                         <Button onClick={this.handleCreateRoom} bsStyle="primary">Save</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={this.state.showmodal2} onHide={()=>{this.setState({showmodal:false})}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Join Group</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p style={{color:'red'}}>{this.state.err2}</p>
+                        <Form inline style={{textAlign:'center'}}>
+                            <FormGroup style={{margin:"auto"}}>
+                                <ControlLabel>Group ID</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="Enter GroupID"
+                                    onChange={(e)=>this.setState({joinGroupID:e.target.value})}
+                                    style={{margin:'0 10px 0 10px'}}
+                                />  
+                            </FormGroup>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={()=>{this.setState({showmodal2:false})}}>Close</Button>
+                        <Button onClick={this.handleJoinGroup} bsStyle="primary">Join Group</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
